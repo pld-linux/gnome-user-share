@@ -14,11 +14,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 An integrated file sharing solution for the GNOME Desktop. It uses
-WebDAV and SMB.
+WebDAV.
 
 %description -l pl
 Zintegrowane rozwi±zanie do wspó³dzielenia plików dla ¶rodowiska
-GNOME. U¿ywa WebDAV oraz SMB.
+GNOME. U¿ywa WebDAV.
 
 %prep
 %setup -q
