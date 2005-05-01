@@ -6,7 +6,7 @@ Release:	0.1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	364e7f59ed0c104b33f9d0e25222962e
+# Source0-md5:	61ca94a3676d3e137f104159471a97b0
 BuildRequires:	howl-devel
 BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
