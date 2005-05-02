@@ -10,6 +10,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.5/%{name}-%{v
 BuildRequires:	howl-devel
 BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
+BuildRequires:	rpmbuild(macros) >= 1.198
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,7 +25,6 @@ GNOME. U¿ywa WebDAV.
 %setup -q
 
 %build
-export CFLAGS
 %configure
 %{__make}
 
