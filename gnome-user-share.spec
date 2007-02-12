@@ -1,5 +1,5 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
-Summary(pl):	Zintegrowane rozwi眤anie do wsp蟪dzielenia plik體 dla 秗odowiska GNOME
+Summary(pl.UTF-8):   Zintegrowane rozwi膮zanie do wsp贸艂dzielenia plik贸w dla 艣rodowiska GNOME
 Name:		gnome-user-share
 Version:	0.10
 Release:	1
@@ -20,9 +20,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 An integrated file sharing solution for the GNOME Desktop. It uses
 WebDAV.
 
-%description -l pl
-Zintegrowane rozwi眤anie do wsp蟪dzielenia plik體 dla 秗odowiska
-GNOME. U縴wa WebDAV.
+%description -l pl.UTF-8
+Zintegrowane rozwi膮zanie do wsp贸艂dzielenia plik贸w dla 艣rodowiska
+GNOME. U偶ywa WebDAV.
 
 %prep
 %setup -q
