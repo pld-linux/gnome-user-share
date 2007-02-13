@@ -1,5 +1,5 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
-Summary(pl.UTF-8):   Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
+Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
 Version:	0.10
 Release:	1
