@@ -11,6 +11,7 @@ BuildRequires:	avahi-glib-devel
 BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
 BuildRequires:	rpmbuild(macros) >= 1.198
+Requires(post,preun):	GConf2
 Requires:	apache-mod_dav
 Requires:	apache-mod_auth_digest
 Requires:	apache-mod_authz_groupfile
