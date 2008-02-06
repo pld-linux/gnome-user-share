@@ -1,13 +1,15 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	0.10
+Version:	0.21
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	66d60061041e668e6ec7334d081bfc13
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.21/%{name}-%{version}.tar.bz2
+# Source0-md5:	b04c64edaff246a75162b3b346ce449e
 BuildRequires:	avahi-glib-devel
+BuildRequires:	dbus-devel >= 1.1.1
+BuildRequires:	glib2-devel >= 1:2.15.2
 BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
 BuildRequires:	rpmbuild(macros) >= 1.198
@@ -57,3 +59,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/desktop_gnome_file_sharing.schemas
 %{_desktopdir}/*.desktop
 %{_datadir}/%{name}
+%{_datadir}/gnome/autostart/gnome-user-share.desktop
