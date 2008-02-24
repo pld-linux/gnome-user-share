@@ -1,12 +1,12 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	0.21
+Version:	0.22
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.21/%{name}-%{version}.tar.bz2
-# Source0-md5:	b04c64edaff246a75162b3b346ce449e
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	88722b281a49050d2333eb5c001459e6
 BuildRequires:	avahi-glib-devel
 BuildRequires:	dbus-devel >= 1.1.1
 BuildRequires:	glib2-devel >= 1:2.15.2
@@ -14,6 +14,7 @@ BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
 BuildRequires:	rpmbuild(macros) >= 1.198
 Requires(post,preun):	GConf2
+Requires(post,postun):	hicolor-icon-theme
 Requires:	apache-mod_dav
 Requires:	apache-mod_auth_digest
 Requires:	apache-mod_authz_groupfile
@@ -47,9 +48,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %gconf_schema_install desktop_gnome_file_sharing.schemas
+%update_icon_cache hicolor
 
 %preun
 %gconf_schema_uninstall desktop_gnome_file_sharing.schemas
+
+%postun
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -60,3 +65,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/*.desktop
 %{_datadir}/%{name}
 %{_datadir}/gnome/autostart/gnome-user-share.desktop
+%{_iconsdir}/hicolor/*/apps/*.png
