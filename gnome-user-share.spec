@@ -55,5 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/%{name}
 %{_sysconfdir}/gconf/schemas/desktop_gnome_file_sharing.schemas
+%{_sysconfdir}/xdg/autostart/%{name}.desktop
 %{_desktopdir}/*.desktop
 %{_datadir}/%{name}
+%{_iconsdir}/*/*/*/*.png
