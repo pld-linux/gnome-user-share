@@ -8,13 +8,16 @@ Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.31/%{name}-%{version}.tar.bz2
 # Source0-md5:	81d2b3d6c0694e5669330d8ad5c8a4b0
 BuildRequires:	avahi-glib-devel
+BuildRequires:	gettext-devel
 BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
+BuildRequires:	perl-XML-Parser
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.198
 Requires(post,preun):	GConf2
-Requires:	apache-mod_dav
 Requires:	apache-mod_auth_digest
 Requires:	apache-mod_authz_groupfile
+Requires:	apache-mod_dav
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
