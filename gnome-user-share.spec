@@ -1,12 +1,12 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	0.31
+Version:	2.30.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/0.31/%{name}-%{version}.tar.bz2
-# Source0-md5:	81d2b3d6c0694e5669330d8ad5c8a4b0
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/2.30/%{name}-%{version}.tar.bz2
+# Source0-md5:	532f3d310ec9b42bf2dd015ab5b64092
 BuildRequires:	avahi-glib-devel
 BuildRequires:	gettext-devel
 BuildRequires:	libglade2-devel
@@ -41,7 +41,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name}
+rm -f $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0/*la
+
+%find_lang %{name} --with-gnome --with-omf --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -57,6 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/%{name}
+%attr(755,root,root) %{_libdir}/nautilus/extensions-2.0/libnautilus-share-extension.so
 %{_sysconfdir}/gconf/schemas/desktop_gnome_file_sharing.schemas
 %{_sysconfdir}/xdg/autostart/%{name}.desktop
 %{_desktopdir}/*.desktop
