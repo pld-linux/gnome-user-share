@@ -9,8 +9,11 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/2.30/%{name}-%{
 # Source0-md5:	532f3d310ec9b42bf2dd015ab5b64092
 BuildRequires:	avahi-glib-devel
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-bluetooth-devel
+BuildRequires:	libcanberra-gtk-devel
 BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
+BuildRequires:	nautilus-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.198
