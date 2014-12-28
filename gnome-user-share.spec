@@ -9,7 +9,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/3.14/%{name}-%{
 # Source0-md5:	ccf4bb24067b6e85f0d40c131cfaaf4f
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-bluetooth-devel >= 3.10.0
 BuildRequires:	gnome-common
