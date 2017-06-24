@@ -1,12 +1,12 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	3.18.0
+Version:	3.18.3
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	a1a906e6037ed5afb0ee8d0ae2ce3a27
+# Source0-md5:	554faf22a881be31218001ba9bf918f3
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-tools
@@ -21,6 +21,7 @@ BuildRequires:	libtool >= 2:2
 BuildRequires:	nautilus-devel >= 3.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	systemd-units
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	yelp-tools
@@ -79,6 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog NEWS README
 %attr(755,root,root) %{_libexecdir}/gnome-user-share-webdav
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-share-extension.so
+%{systemduserunitdir}/gnome-user-share-webdav.service
 %{_datadir}/GConf/gsettings/gnome-user-share.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.desktop.file-sharing.gschema.xml
 %{_datadir}/%{name}
