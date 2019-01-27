@@ -1,12 +1,12 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	3.18.3
+Version:	3.28.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	554faf22a881be31218001ba9bf918f3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/3.28/%{name}-%{version}.tar.xz
+# Source0-md5:	34f8c104e9bf86854d670fc4303bae11
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gettext-tools
