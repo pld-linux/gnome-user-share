@@ -1,37 +1,36 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	3.28.0
+Version:	3.34.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/3.28/%{name}-%{version}.tar.xz
-# Source0-md5:	34f8c104e9bf86854d670fc4303bae11
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake >= 1:1.11
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/3.34/%{name}-%{version}.tar.xz
+# Source0-md5:	a3d983d0cf8357832229ff96172418d8
+Patch0:		%{name}-meson.patch
+URL:		https://gitlab.gnome.org/GNOME/gnome-user-share/
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.28.0
-BuildRequires:	gnome-common
+BuildRequires:	glib2-devel >= 1:2.58
 BuildRequires:	gtk+3-devel >= 3.0
-BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libcanberra-gtk3-devel
-BuildRequires:	libnotify-devel
 BuildRequires:	libselinux-devel
-BuildRequires:	libtool >= 2:2
-BuildRequires:	nautilus-devel >= 3.0.0
+BuildRequires:	meson >= 0.50.0
+BuildRequires:	nautilus-devel >= 3.28
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	systemd-units
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.58
 Requires:	apache-base >= 2.2
-Requires:	apache-mod_auth_digest
-Requires:	apache-mod_authn_file
-Requires:	apache-mod_authz_groupfile
-Requires:	apache-mod_dav
+Requires:	apache-mod_auth_digest >= 2.2
+Requires:	apache-mod_authn_file >= 2.2
+Requires:	apache-mod_authz_groupfile >= 2.2
+Requires:	apache-mod_dav >= 2.2
 Requires:	apache-mod_dnssd >= 0.6
+Requires:	glib2 >= 1:2.58
+Requires:	nautilus >= 3.28
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,25 +43,19 @@ GNOME. Używa WebDAV.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--disable-silent-rules
-%{__make}
+%meson build \
+	-Dhttpd=/usr/sbin/httpd \
+	-Dmodules_path=%{_libdir}/apache
+
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.la
+%ninja_install -C build
 
 %find_lang %{name}
 
@@ -77,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS README
+%doc MAINTAINERS NEWS README
 %attr(755,root,root) %{_libexecdir}/gnome-user-share-webdav
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-share-extension.so
 %{systemduserunitdir}/gnome-user-share-webdav.service
