@@ -2,7 +2,7 @@ Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
 Version:	3.34.0
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/3.34/%{name}-%{version}.tar.xz
@@ -17,12 +17,13 @@ BuildRequires:	meson >= 0.50.0
 BuildRequires:	nautilus-devel >= 3.28
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.011
 BuildRequires:	systemd-units
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.58
+Requires(post,preun):	systemd-units >= 250.1
 Requires:	apache-base >= 2.2
 Requires:	apache-mod_auth_digest >= 2.2
 Requires:	apache-mod_authn_file >= 2.2
@@ -31,6 +32,7 @@ Requires:	apache-mod_dav >= 2.2
 Requires:	apache-mod_dnssd >= 0.6
 Requires:	glib2 >= 1:2.58
 Requires:	nautilus >= 3.28
+Requires:	systemd-units >= 250.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -64,6 +66,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %glib_compile_schemas
+%systemd_user_post gnome-user-share-webdav.service
+
+%preun
+%systemd_user_preun gnome-user-share-webdav.service
 
 %postun
 %glib_compile_schemas
