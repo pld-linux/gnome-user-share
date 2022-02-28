@@ -23,7 +23,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.58
-Requires(post,preun):	systemd-units >= 250.1
+Requires(post,preun):	systemd-units >= 1:250.1
 Requires:	apache-base >= 2.2
 Requires:	apache-mod_auth_digest >= 2.2
 Requires:	apache-mod_authn_file >= 2.2
@@ -32,7 +32,7 @@ Requires:	apache-mod_dav >= 2.2
 Requires:	apache-mod_dnssd >= 0.6
 Requires:	glib2 >= 1:2.58
 Requires:	nautilus >= 3.28
-Requires:	systemd-units >= 250.1
+Requires:	systemd-units >= 1:250.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
