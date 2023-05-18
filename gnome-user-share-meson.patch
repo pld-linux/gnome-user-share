@@ -1,14 +1,14 @@
---- gnome-user-share-3.34.0/meson.build.orig	2019-09-06 11:39:10.000000000 +0200
-+++ gnome-user-share-3.34.0/meson.build	2019-11-23 19:50:37.844945353 +0100
-@@ -73,8 +73,12 @@
-   systemd_systemduserunitdir = dependency('systemd').get_pkgconfig_variable('systemduserunitdir')
+--- gnome-user-share-43.0/meson.build.orig	2023-05-18 21:34:36.569732449 +0200
++++ gnome-user-share-43.0/meson.build	2023-05-18 21:43:50.040067376 +0200
+@@ -71,8 +71,12 @@ if systemd_systemduserunitdir == ''
+   systemd_systemduserunitdir = dependency('systemd').get_variable(pkgconfig: 'systemduserunitdir')
  endif
  
 +if get_option('httpd')[0] != 'httpd'
 +  httpd_path = get_option('httpd')[0]
 +else
  httpd = find_program(get_option('httpd'), required: false)
- httpd_path = (httpd.found() ? httpd.path() : '')
+ httpd_path = (httpd.found() ? httpd.full_path() : '')
 +endif
  
  sockets_deps = []
