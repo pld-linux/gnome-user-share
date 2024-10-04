@@ -1,6 +1,6 @@
---- gnome-user-share-43.0/meson.build.orig	2023-05-18 21:34:36.569732449 +0200
-+++ gnome-user-share-43.0/meson.build	2023-05-18 21:43:50.040067376 +0200
-@@ -71,8 +71,12 @@ if systemd_systemduserunitdir == ''
+--- gnome-user-share-47.0/meson.build.orig	2024-10-04 13:37:10.522107724 +0200
++++ gnome-user-share-47.0/meson.build	2024-10-04 18:14:25.841986467 +0200
+@@ -79,6 +79,9 @@ if systemd_systemduserunitdir == ''
    systemd_systemduserunitdir = dependency('systemd').get_variable(pkgconfig: 'systemduserunitdir')
  endif
  
@@ -8,8 +8,13 @@
 +  httpd_path = get_option('httpd')[0]
 +else
  httpd = find_program(get_option('httpd'), required: false)
- httpd_path = (httpd.found() ? httpd.full_path() : '')
+ httpd_path = ''
+ 
+@@ -100,6 +103,7 @@ if httpd.found()
+     error('httpd version @0@ >= @1@: NO'.format(version, req_version))
+   endif
+ endif
 +endif
  
- sockets_deps = []
- if not cc.has_function('socket')
+ config_h.set_quoted('HTTPD_PROGRAM', httpd_path)
+ 

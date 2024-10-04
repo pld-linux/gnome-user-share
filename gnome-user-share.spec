@@ -1,18 +1,18 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	43.0
+Version:	47.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-user-share/43/%{name}-%{version}.tar.xz
-# Source0-md5:	e0d3bd369289670e936e4321ab2de44d
+Source0:	https://download.gnome.org/sources/gnome-user-share/47/%{name}-%{version}.tar.xz
+# Source0-md5:	0cf588f41a5e5dc6005b3fabfb907314
 Patch0:		%{name}-meson.patch
 URL:		https://gitlab.gnome.org/GNOME/gnome-user-share/
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.71.3
+BuildRequires:	glib2-devel >= 1:2.74.0
 BuildRequires:	libselinux-devel
-BuildRequires:	meson >= 0.57.0
+BuildRequires:	meson >= 0.58.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.011
@@ -20,15 +20,15 @@ BuildRequires:	systemd-units
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.71.3
+Requires(post,postun):	glib2 >= 1:2.74.0
 Requires(post,preun):	systemd-units >= 1:250.1
-Requires:	apache-base >= 2.2
-Requires:	apache-mod_auth_digest >= 2.2
-Requires:	apache-mod_authn_file >= 2.2
-Requires:	apache-mod_authz_groupfile >= 2.2
-Requires:	apache-mod_dav >= 2.2
+Requires:	apache-base >= 2.4
+Requires:	apache-mod_auth_digest >= 2.4
+Requires:	apache-mod_authn_file >= 2.4
+Requires:	apache-mod_authz_groupfile >= 2.4
+Requires:	apache-mod_dav >= 2.4
 Requires:	apache-mod_dnssd >= 0.6
-Requires:	glib2 >= 1:2.71.3
+Requires:	glib2 >= 1:2.74.0
 Requires:	systemd-units >= 1:250.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -73,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc MAINTAINERS NEWS README
+%doc MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_libexecdir}/gnome-user-share-webdav
 %{systemduserunitdir}/gnome-user-share-webdav.service
 %{_datadir}/GConf/gsettings/gnome-user-share.convert
