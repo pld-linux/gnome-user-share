@@ -1,21 +1,28 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	47.2
+Version:	48.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-user-share/47/%{name}-%{version}.tar.xz
-# Source0-md5:	55986957295b3e7e08df6e8f6d3c8bf8
+Source0:	https://download.gnome.org/sources/gnome-user-share/48/%{name}-%{version}.tar.xz
+# Source0-md5:	efc5a2f41efa58bf52405518b9aa69e0
+# cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2 --features selinux
+Source1:	%{name}-vendor-%{version}.tar.xz
+# Source1-md5:	6d407f9d1be601f00c27f85c90850bff
 Patch0:		%{name}-meson.patch
 URL:		https://gitlab.gnome.org/GNOME/gnome-user-share/
+BuildRequires:	cargo
+# for selinux
+BuildRequires:	clang
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.74.0
-BuildRequires:	libselinux-devel
+BuildRequires:	libselinux-devel >= 2.8
 BuildRequires:	meson >= 0.58.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.042
+BuildRequires:	rust >= 1.80.0
 BuildRequires:	systemd-units
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -29,6 +36,7 @@ Requires:	apache-mod_authz_groupfile >= 2.4
 Requires:	apache-mod_dav >= 2.4
 Requires:	apache-mod_dnssd >= 0.6
 Requires:	glib2 >= 1:2.74.0
+Requires:	libselinux >= 2.8
 Requires:	systemd-units >= 1:250.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,8 +49,20 @@ Zintegrowane rozwiązanie do współdzielenia plików dla środowiska
 GNOME. Używa WebDAV.
 
 %prep
-%setup -q
+%setup -q -b1
 %patch -P0 -p1
+
+# use offline registry
+CARGO_HOME="$(pwd)/.cargo"
+
+mkdir -p "$CARGO_HOME"
+cat >$CARGO_HOME/config.toml <<EOF
+[source.crates-io]
+replace-with = 'vendored-sources'
+
+[source.vendored-sources]
+directory = '$PWD/vendor'
+EOF
 
 %build
 %meson \
