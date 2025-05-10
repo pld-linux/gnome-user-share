@@ -1,0 +1,18 @@
+--- gnome-user-share-48.0/src/meson.build.orig	2025-03-15 19:05:02.000000000 +0100
++++ gnome-user-share-48.0/src/meson.build	2025-05-10 06:56:36.183473922 +0200
+@@ -16,6 +16,7 @@ run_command(
+ 
+ cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
+ cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
++cargo_options += [ '--target', 'x86_64-unknown-linux-gnux32' ]
+ 
+ if get_option('buildtype') == 'release'
+   cargo_options += [ '--release' ]
+@@ -47,6 +48,6 @@ custom_target(
+     cargo, 'build',
+     cargo_options,
+     '&&',
+-    'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
++    'cp', 'src' / 'x86_64-unknown-linux-gnux32' / rust_target / meson.project_name(), '@OUTPUT@',
+   ]
+ )

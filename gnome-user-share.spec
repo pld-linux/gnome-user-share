@@ -11,10 +11,14 @@ Source0:	https://download.gnome.org/sources/gnome-user-share/48/%{name}-%{versio
 Source1:	%{name}-vendor-%{version}.tar.xz
 # Source1-md5:	6d407f9d1be601f00c27f85c90850bff
 Patch0:		%{name}-meson.patch
+Patch1:		%{name}-x32.patch
 URL:		https://gitlab.gnome.org/GNOME/gnome-user-share/
 BuildRequires:	cargo
 # for selinux
 BuildRequires:	clang
+%ifarch x32
+BuildRequires:	clang-libs(x86-x32)
+%endif
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.74.0
 BuildRequires:	libselinux-devel >= 2.8
@@ -51,6 +55,9 @@ GNOME. Używa WebDAV.
 %prep
 %setup -q -b1
 %patch -P0 -p1
+%ifarch x32
+%patch -P1 -p1
+%endif
 
 # use offline registry
 CARGO_HOME="$(pwd)/.cargo"
@@ -65,6 +72,9 @@ directory = '$PWD/vendor'
 EOF
 
 %build
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %meson \
 	-Dhttpd=/usr/sbin/httpd \
 	-Dmodules_path=%{_libdir}/apache
@@ -74,6 +84,9 @@ EOF
 %install
 rm -rf $RPM_BUILD_ROOT
 
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %meson_install
 
 # not supported by glibc (as of 2.40)
