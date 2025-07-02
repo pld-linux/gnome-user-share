@@ -1,14 +1,14 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	48.0
+Version:	48.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/gnome-user-share/48/%{name}-%{version}.tar.xz
-# Source0-md5:	efc5a2f41efa58bf52405518b9aa69e0
+# Source0-md5:	3e1dceb5c333aefa3f35a34ee4b251da
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2 --features selinux
-Source1:	%{name}-vendor-%{version}.tar.xz
+Source1:	%{name}-vendor-48.0.tar.xz
 # Source1-md5:	6d407f9d1be601f00c27f85c90850bff
 Patch0:		%{name}-meson.patch
 Patch1:		%{name}-x32.patch
@@ -53,11 +53,13 @@ Zintegrowane rozwiązanie do współdzielenia plików dla środowiska
 GNOME. Używa WebDAV.
 
 %prep
-%setup -q -b1
+%setup -q -a1
 %patch -P0 -p1
 %ifarch x32
 %patch -P1 -p1
 %endif
+
+%{__mv} %{name}-48.0/vendor vendor
 
 # use offline registry
 CARGO_HOME="$(pwd)/.cargo"
