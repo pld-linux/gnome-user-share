@@ -2,7 +2,7 @@ Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
 Version:	48.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/gnome-user-share/48/%{name}-%{version}.tar.xz
@@ -76,6 +76,11 @@ EOF
 %build
 %ifarch x32
 export PKG_CONFIG_ALLOW_CROSS=1
+# This is stupid, but the only way to make bindgen parse selinux.h, without this
+# bindgen cannot resolve ino_t to rust type and leaves it as __uint64_t.
+# This happens because bingen, for some reason, cannot load x32 libclang and
+# instead is loading 64bit one.
+export BINDGEN_EXTRA_CLANG_ARGS="-Dino_t=uint64_t"
 %endif
 %meson \
 	-Dhttpd=/usr/sbin/httpd \
