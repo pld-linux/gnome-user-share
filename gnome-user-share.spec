@@ -18,6 +18,7 @@ BuildRequires:	cargo
 BuildRequires:	clang
 %ifarch x32
 BuildRequires:	clang-libs(x86-x32)
+BuildRequires:	clang-libs(x86-64)
 %endif
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.74.0
