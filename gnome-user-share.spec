@@ -1,12 +1,12 @@
 Summary:	An integrated file sharing solution for the GNOME Desktop
 Summary(pl.UTF-8):	Zintegrowane rozwiązanie do współdzielenia plików dla środowiska GNOME
 Name:		gnome-user-share
-Version:	48.1
-Release:	2
+Version:	48.2
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/gnome-user-share/48/%{name}-%{version}.tar.xz
-# Source0-md5:	3e1dceb5c333aefa3f35a34ee4b251da
+# Source0-md5:	048f5779c0aef70348974a8231d102c2
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2 --features selinux
 Source1:	%{name}-vendor-48.0.tar.xz
 # Source1-md5:	6d407f9d1be601f00c27f85c90850bff
